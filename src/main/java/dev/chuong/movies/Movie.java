@@ -25,5 +25,5 @@ public class Movie {
     private List<String> genres;
     private List<String> backdrops;
     @DocumentReference
-    private List<Review> reviewIds;     // 1 movie can have many reviews
+    private List<Review> reviewIds;     // 1 movie can have many reviews, Foreign Key
 }

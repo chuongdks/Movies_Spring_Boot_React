@@ -15,5 +15,10 @@ public class Review {
     @Id
     private ObjectId id;
     private String body;
+
+    // since id are auto generate --> cant pass id to the class --> create constructor takes only the body
+    public Review(String body) {
+        this.body = body;
+    }
 }
 
