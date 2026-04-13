@@ -10,12 +10,12 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
-@Document(collection = "movies")
-@Data   // take cares of getter setters methods
-@AllArgsConstructor     // constructors
-@NoArgsConstructor
+@Document(collection = "movies")    // mark the class as MongoDB document, point to the "movies" table
+@Data                               // create for every field: Getters, Setters, toString(),equals(),...
+@AllArgsConstructor                 // create constructors with no args (Movie())
+@NoArgsConstructor                  // create constructor that accepts a value for every single field in the class
 public class Movie {
-    @Id
+    @Id                             // unique identifier for the doc of the DB
     private ObjectId id;
     private String imdbId;
     private String title;
@@ -24,6 +24,6 @@ public class Movie {
     private String poster;
     private List<String> genres;
     private List<String> backdrops;
-    @DocumentReference
+    @DocumentReference              // Relationship handling annotation
     private List<Review> reviewIds;     // 1 movie can have many reviews, Foreign Key
 }

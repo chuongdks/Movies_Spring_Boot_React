@@ -12,5 +12,5 @@ import java.util.Optional;
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
     // automatic query for imdbId or any properties name in ur model class
-    Optional<Movie> findMovieByImdbId(String imdbId);   // Spring data Mongodb automatically understand the name method?
+    Optional<Movie> findMovieByImdbId(String imdbId);   // Query Derivation.
 }

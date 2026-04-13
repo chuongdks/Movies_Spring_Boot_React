@@ -11,7 +11,7 @@ import java.util.Optional;
  * */
 @Service
 public class MovieService {
-    @Autowired  // use this annotation to init the class
+    @Autowired  // auto init the class, movieRepository = new MovieRepository()
     private MovieRepository movieRepository;
 
     public List<Movie> allMovies() {
