@@ -19,7 +19,7 @@ public class ReviewService {
     private MongoTemplate mongoTemplate;
 
     public Review createReview(String reviewBody, String imdbId) {
-        Review review = reviewRepository.insert(new Review(reviewBody));    // create a new Review here instead of already exist like Movie
+        Review review = reviewRepository.insert(new Review(reviewBody, imdbId));    // create a new Review here instead of already exist like Movie
         // query
         mongoTemplate.update(Movie.class)
                 .matching(Criteria.where("imdbId").is(imdbId))
