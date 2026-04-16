@@ -1,4 +1,5 @@
 package dev.chuong.movies;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,14 @@ public class Game {
     @DocumentReference
     private List<Review> reviewIds; // Links specific reviews to this game
 
-    // Helper method to get the actual logo URL based on the hash provided by Steam
+    // Helper methods
     public String getFullLogoUrl() {
         if (img_logo_url == null || img_logo_url.isEmpty()) return null;
         return String.format("https://media.steampowered.com/steamcommunity/public/images/apps/%d/%s.jpg",
                 appid, img_logo_url);
+    }
+
+    public String getName() {
+        return (name == null || name.isEmpty()) ? "Unknown Steam App (" + appid + ")" : name;
     }
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class GameSteamLibraryResponse {
+public class SteamLibraryResponse {
     private ResponseData response; // Matches the outer "response" key
 
     @Data
