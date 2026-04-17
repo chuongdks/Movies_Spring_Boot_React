@@ -18,4 +18,9 @@ public class GameLibraryController {
     public ResponseEntity<List<Game>> getAllGamesFromUserId(@PathVariable String steamId) {
         return new ResponseEntity<List<Game>>(libraryService.syncLibrary(steamId), HttpStatus.OK);
     }
+
+    @GetMapping("/top30")
+    public ResponseEntity<List<Game>> getTopGames() {
+        return new ResponseEntity<>(libraryService.getTopGamesByPlaytime(), HttpStatus.OK);
+    }
 }

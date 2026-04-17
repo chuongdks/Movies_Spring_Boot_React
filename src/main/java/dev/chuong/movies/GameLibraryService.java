@@ -1,6 +1,8 @@
 package dev.chuong.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -17,10 +19,13 @@ public class GameLibraryService {
     @Autowired
     private UserService userService;
 
+    @Value("${steam.api.key}")
+    private String steamApiKey; // Spring injects the value here
+
     public List<Game> syncLibrary(String steamId) {
         try {
             // 1. Fetch Player Details (Name, Avatar)
-            String playerUrl = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9112DDCE1D934012805D50F495CE4F6F&steamids=" + steamId;
+            String playerUrl = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=" + steamApiKey + "&steamids=" + steamId;
             SteamPlayerResponse playerResult = restTemplate.getForObject(playerUrl, SteamPlayerResponse.class);
 
             String steamName = "SteamUser"; // Default
@@ -29,9 +34,7 @@ public class GameLibraryService {
             }
 
             // 2. Fetch Owned Games from Players
-            String gamesUrl = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=9112DDCE1D934012805D50F495CE4F6F&steamid=" + steamId + "&format=json&include_appinfo=true&include_played_free_games=true";
-
-            // RestTemplate reads the JSON into the SteamLibraryResponse wrapper
+            String gamesUrl = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + steamApiKey + "&steamid=" + steamId + "&format=json&include_appinfo=true&include_played_free_games=true";
             SteamLibraryResponse result = restTemplate.getForObject(gamesUrl, SteamLibraryResponse.class);
 
             if (result != null && result.getResponse() != null && result.getResponse().getGames() != null) {
@@ -60,5 +63,9 @@ public class GameLibraryService {
             System.err.println("Unexpected Error: " + e.getMessage());
             return Collections.emptyList();
         }
+    }
+
+    public List<Game> getTopGamesByPlaytime() {
+        return gameRepository.findTop30ByPlaytime(PageRequest.of(0, 30)); // findTop30ByOrderByPlaytimeForeverDesc
     }
 }
