@@ -13,7 +13,7 @@ import java.util.Map;
  * */
 @RestController
 @RequestMapping("/api/v1/reviews")
-@CrossOrigin(origins = "*") // Allows all origins during development
+// @CrossOrigin(origins = "*") // Allows all origins during development
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;

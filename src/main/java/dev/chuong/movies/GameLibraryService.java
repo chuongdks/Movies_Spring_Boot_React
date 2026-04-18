@@ -2,7 +2,10 @@ package dev.chuong.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -65,7 +68,8 @@ public class GameLibraryService {
         }
     }
 
-    public List<Game> getTopGamesByPlaytime() {
-        return gameRepository.findTop30ByPlaytime(PageRequest.of(0, 30)); // findTop30ByOrderByPlaytimeForeverDesc
+    public Page<Game> getTopGamesByPlaytime(int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber, 30, Sort.by(Sort.Direction.DESC, "playtime_forever"));
+        return gameRepository.findAll(pageable);
     }
 }

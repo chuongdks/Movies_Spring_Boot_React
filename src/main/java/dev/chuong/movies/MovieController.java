@@ -14,7 +14,7 @@ import java.util.Optional;
 * */
 @RestController
 @RequestMapping("/api/v1/movies")   // requests to this directory will be handled by this script
-@CrossOrigin(origins = "*") // Allows all origins during development
+// @CrossOrigin(origins = "*") // Allows all origins during development
 public class MovieController {
     @Autowired  // use this annotation to init the class
     private MovieService movieService;  // use MovieService to get all the movies

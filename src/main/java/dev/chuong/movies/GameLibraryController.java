@@ -1,6 +1,7 @@
 package dev.chuong.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/libraries")
-@CrossOrigin(origins = "*") // Allows all origins during development
+// @CrossOrigin(origins = "*") // Allows all origins during development
 public class GameLibraryController {
     @Autowired
     private GameLibraryService libraryService;
@@ -20,7 +21,7 @@ public class GameLibraryController {
     }
 
     @GetMapping("/top30")
-    public ResponseEntity<List<Game>> getTopGames() {
-        return new ResponseEntity<>(libraryService.getTopGamesByPlaytime(), HttpStatus.OK);
+    public ResponseEntity<Page<Game>> getTopGames(@RequestParam(defaultValue = "0") int page) {
+        return new ResponseEntity<Page<Game>>(libraryService.getTopGamesByPlaytime(page), HttpStatus.OK);
     }
 }
