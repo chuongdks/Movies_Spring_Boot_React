@@ -14,7 +14,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(allowedOrigins) // Your Cloudflare URL
+                //.allowedOrigins(allowedOrigins) // specific origin
+                .allowedOriginPatterns("http://localhost:[*]", "http://127.0.0.1:[*]", "http://172.*:[*]") // test environment
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true); // for future auth features (Steam OAuth)
