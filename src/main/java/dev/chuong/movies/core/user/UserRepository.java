@@ -1,4 +1,4 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.user;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

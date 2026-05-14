@@ -1,4 +1,4 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

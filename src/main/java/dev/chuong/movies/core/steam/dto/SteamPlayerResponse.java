@@ -1,11 +1,11 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.steam.dto;
 
 import lombok.Data;
 
 import java.util.List;
 
 /* DTO for the Steam Player API
- * Inherit MongoRepository class to find movies in db
+ * Steam API
  * */
 @Data
 public class SteamPlayerResponse {

@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 //.allowedOrigins(allowedOrigins) // specific origin
-                .allowedOriginPatterns("http://localhost:[*]", "http://127.0.0.1:[*]", "http://172.*:[*]") // test environment
+                .allowedOriginPatterns("http://localhost:[*]", "http://127.0.0.1:[*]", "http://172.*:[*]") // test only, remember to comment this line and uncomment the line above
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true); // for future auth features (Steam OAuth)

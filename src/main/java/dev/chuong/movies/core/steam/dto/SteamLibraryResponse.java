@@ -1,5 +1,6 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.steam.dto;
 
+import dev.chuong.movies.core.steam.Game;
 import lombok.Data;
 import java.util.List;
 

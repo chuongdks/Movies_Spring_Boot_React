@@ -1,4 +1,4 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.steam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

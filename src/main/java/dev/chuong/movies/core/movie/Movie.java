@@ -1,5 +1,6 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.movie;
 
+import dev.chuong.movies.core.review.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

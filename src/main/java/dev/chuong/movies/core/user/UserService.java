@@ -1,5 +1,6 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.user;
 
+import dev.chuong.movies.core.steam.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

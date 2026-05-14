@@ -1,5 +1,7 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.user;
 
+import dev.chuong.movies.core.steam.Game;
+import dev.chuong.movies.core.movie.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

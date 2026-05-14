@@ -1,4 +1,4 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.review;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

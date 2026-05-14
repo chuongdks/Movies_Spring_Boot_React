@@ -1,5 +1,8 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.steam;
 
+import dev.chuong.movies.core.steam.dto.SteamLibraryResponse;
+import dev.chuong.movies.core.steam.dto.SteamPlayerResponse;
+import dev.chuong.movies.core.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;

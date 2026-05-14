@@ -1,4 +1,4 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.review;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

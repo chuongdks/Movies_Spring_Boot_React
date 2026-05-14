@@ -1,5 +1,5 @@
-package dev.chuong.movies;
-import com.fasterxml.jackson.annotation.JsonProperty;
+package dev.chuong.movies.core.steam;
+import dev.chuong.movies.core.review.Review;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

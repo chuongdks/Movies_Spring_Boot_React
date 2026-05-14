@@ -1,5 +1,6 @@
-package dev.chuong.movies;
+package dev.chuong.movies.core.review;
 
+import dev.chuong.movies.core.movie.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
