@@ -3,10 +3,7 @@ package dev.chuong.movies.core.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -33,7 +30,7 @@ public class AccountController {
             AuthResponse response = authService.register(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED); // 201
         } catch (RuntimeException e) {
-            // Username or email already taken
+            // Username or email already taken or something else in the Service layer
             return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.CONFLICT); // 409
         }
     }
@@ -50,6 +47,21 @@ public class AccountController {
         } catch (RuntimeException e) {
             // Bad credentials
             return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.UNAUTHORIZED); // 401
+        }
+    }
+
+    /* DELETE /api/v1/auth/steam/link?username=alice
+     * Param: String username
+     * Returns: { "message": "Steam account unlinked." }
+     * Lets the frontend unlink a Steam account from a normal account
+     */
+    @DeleteMapping("/steam/link")
+    public ResponseEntity<?> unlinkSteam(@RequestParam String username) {
+        try {
+            authService.unlinkSteam(username);
+            return new ResponseEntity<>(Map.of("message", "Steam account unlinked."), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 }

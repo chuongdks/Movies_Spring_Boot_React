@@ -17,4 +17,7 @@ public interface AccountRepository extends MongoRepository<Account, ObjectId>{
     // check if email/username is taken during registration
     boolean existsByEmail(String email);
     boolean existsByUsername(String username);
+
+    // Used by linkSteam(), prevent one Steam account being linked to two users
+    boolean existsBySteamId(String steamId);
 }

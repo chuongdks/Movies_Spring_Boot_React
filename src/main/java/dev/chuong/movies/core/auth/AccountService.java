@@ -69,4 +69,36 @@ public class AccountService {
 
         return new AuthResponse(token, user);
     }
+
+    /* ── Link Steam account ────────────────────────────────────────────────────
+    * Called by SteamAuthController after a successful Steam OAuth callback.
+    * Finds the Account by username and saves the Steam ID onto it.
+    */
+    public Account linkSteam(String username, String steamId) {
+
+        // Guard: make sure the account exists
+        Account account = accountRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Account not found: " + username));
+        // Guard: prevent the same Steam account being linked to two different accounts
+        if (accountRepository.existsBySteamId(steamId)) {
+            throw new RuntimeException("This Steam account is already linked to another user.");
+        }
+        // Guard: don't overwrite an existing link silently
+        if (account.getSteamId() != null && !account.getSteamId().isEmpty()) {
+            throw new RuntimeException("This account already has a Steam account linked.");
+        }
+
+        // Finally set the steamId for the account
+        account.setSteamId(steamId);
+
+        return accountRepository.save(account);
+    }
+
+    /* ── Unlink Steam account ──────────────────────────────────────────────────
+    * Disconnect Steam from their account.
+    */
+    public Account unlinkSteam(String username) {
+        Account account = accountRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("Account not found: " + username));
+        account.setSteamId(null);
+        return accountRepository.save(account);
+    }
 }
